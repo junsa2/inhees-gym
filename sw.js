@@ -1,5 +1,5 @@
 // Offline cache for Inhee's Gym. Bump VERSION whenever any file changes.
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = 'inhee-' + VERSION;
 const FONTS = 'inhee-fonts';
 const ASSETS = [

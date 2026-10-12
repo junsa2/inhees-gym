@@ -315,6 +315,22 @@ body.typing .s-foot{display:none}
 .mc.pri{background:var(--mus-p)} .mc.sec{background:var(--mus-s)}
 .credit{font-size:11px;color:var(--muted);margin-top:16px}
 .media.one{grid-template-columns:1fr}
+/* body measurements */
+.bodymini{display:block;width:100%;text-align:left;margin-top:12px}
+.bodymini b{font-size:16px}
+.sechead{display:flex;align-items:center;justify-content:space-between;margin:26px 0 10px}
+.sechead h2.sec{margin:0}
+.bodyhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.bignum{font-family:var(--f-num);font-size:28px;font-weight:500;line-height:1.1}
+.bignum span{font-family:var(--f-body);font-size:14px;color:var(--muted);margin-left:3px;font-weight:400}
+table.recent tr[data-act]{cursor:pointer}
+table.recent.body td:first-child{white-space:nowrap;padding-right:14px;vertical-align:top}
+.datef{margin-top:12px}
+.datef input{padding-right:12px}
+.bform{display:flex;flex-direction:column;margin-top:4px}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) 124px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.brow b{display:block;font-size:15px}
+.brow small{display:block;color:var(--muted);font-size:12px;line-height:1.4}
 /* curriculum */
 .prog{display:block;width:100%;text-align:left;margin-top:12px}
 .prog .pn{font-size:17px}
@@ -706,7 +722,7 @@ const TIPS = [
 
 /* ============ STATE ============ */
 const LS = 'inhee.v1';
-let S = {sessions:[], weekGoal:5, sound:true, draft:null, hideInstall:false};
+let S = {sessions:[], body:[], weekGoal:5, sound:true, draft:null, hideInstall:false};
 try{ const raw = localStorage.getItem(LS); if(raw) S = Object.assign(S, JSON.parse(raw)); }catch(e){}
 function save(){ S.savedAt = Date.now(); try{ localStorage.setItem(LS, JSON.stringify(S)); }catch(e){} }
 // iPhone 홈 화면 앱 저장공간을 '지우지 말 것'으로 요청 (지원하는 브라우저만)
@@ -868,6 +884,7 @@ function viewHome(){
   ${S.draft?`<button class="resume" data-act="resume"><span>진행 중: ${esc(S.draft.name)}</span><span>이어서 하기 →</span></button>`:''}
   ${hero}
   ${progCardHTML()}
+  ${bodyMiniHTML()}
   ${missed.length?`<h2 class="sec">이번 주 못 한 운동</h2><section class="card missed">${missed.map(id=>`<button data-act="start" data-rid="${id}"><div class="plate sm ${id}">${RT[id].d}</div><div class="nm"><b>${RT[id].n}</b><small class="sub">${RT[id].day} 루틴 · 약 ${RT[id].min}분</small></div><span class="linkish">시작</span></button>`).join('')}</section>`:''}
   <h2 class="sec">이번 주</h2>
   <section class="card">
@@ -950,6 +967,9 @@ function viewStats(){
       <table class="recent"><tbody>${pts.slice(-5).reverse().map(p=>`<tr><td>${fmtDate(p.date)}</td><td>${p.sets.map(x=>ex.t==='w'?kg(x.w||0)+'×'+(x.r||0):(x.r||0)+unitOf(ex)).join('  ')}</td></tr>`).join('')}</tbody></table></section>`;
   }
   return `${topbar('성장')}
+  <div class="sechead"><h2 class="sec">몸 기록</h2><button class="linkish" data-act="bodyAdd">+ 기록하기</button></div>
+  ${bodySectionHTML()}
+  <h2 class="sec">운동</h2>
   <div class="tiles">
     <div class="tile"><small>이번 주 운동</small><b>${new Set(thisWeek.map(s=>s.date)).size}<span>/ ${S.weekGoal}회</span></b></div>
     <div class="tile"><small>이번 달</small><b>${thisMonth}<span>회</span></b></div>
@@ -960,6 +980,77 @@ function viewStats(){
   <section class="card chart">${barChart(weeks)}</section>
   <h2 class="sec">운동별 변화</h2>
   ${chart}`;
+}
+
+/* ============ BODY: 체중·둘레 기록 ============ */
+const BODY = [
+  {k:'w', n:'체중', u:'kg', lo:20, hi:300, how:'아침 공복, 화장실 다녀온 뒤 같은 시간에'},
+  {k:'waist', n:'허리', u:'cm', lo:10, hi:250, how:'배꼽 높이에서, 숨을 편하게 내쉰 상태로'},
+  {k:'hip', n:'엉덩이', u:'cm', lo:10, hi:250, how:'엉덩이가 가장 튀어나온 곳을 수평으로'},
+  {k:'thigh', n:'허벅지', u:'cm', lo:10, hi:250, how:'엉덩이 바로 아래 가장 굵은 곳, 늘 같은 쪽 다리'},
+  {k:'arm', n:'팔뚝', u:'cm', lo:10, hi:250, how:'어깨와 팔꿈치 중간, 힘을 뺀 상태로'},
+];
+let bodyKey = null;
+const bm = k => BODY.find(m=>m.k===k);
+function bodyEntries(){ return (S.body||[]).slice().sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0); }
+function num1(v){ return (Math.round(v*10)/10).toString(); }
+function signed(v){ const r = Math.round(v*10)/10; return (r>0?'+':r<0?'−':'±')+num1(Math.abs(r)); }
+function bodyVal(e, m){ return num1(e[m.k])+m.u; }
+// 처음 기록과 마지막 기록의 차이 (그 항목을 잰 날끼리)
+function bodyChange(k){ const es = bodyEntries().filter(e=>e[k]!=null); return es.length<2 ? null : es[es.length-1][k]-es[0][k]; }
+function bodyLine(e){ return BODY.filter(m=>e[m.k]!=null).map(m=>(m.k==='w'?'':m.n+' ')+bodyVal(e,m)).join(' · '); }
+
+function bodyMiniHTML(){
+  const es = bodyEntries(), last = es[es.length-1];
+  let head = '아직 기록이 없어요', sub = '체중과 허리·엉덩이 둘레를 남겨 두면 변화를 비교할 수 있어요.';
+  if(last){
+    head = BODY.filter(m=>last[m.k]!=null).slice(0,3).map(m=>(m.k==='w'?'':m.n+' ')+bodyVal(last,m)).join(' · ');
+    const days = Math.round((parseDay(dayKey()) - parseDay(last.date)) / 864e5);
+    const ch = ['w','waist','hip'].map(k=>{ const d = bodyChange(k); return d==null ? null : bm(k).n+' '+signed(d)+bm(k).u; }).filter(Boolean);
+    sub = days >= 14 ? `마지막 기록 후 ${days}일이 지났어요. 다시 재 볼 때예요.` : ch.length ? '처음 기록보다 '+ch.join(' · ') : '2주에 한 번 같은 자리에서 재 보세요.';
+  }
+  return `<button class="card bodymini" data-act="bodyAdd"><div class="row between"><div><div class="eyebrow">몸 기록${last?' · '+fmtShort(last.date):''}</div><b>${head}</b></div><span class="linkish">${last?'기록하기':'첫 기록'}</span></div><div class="sub">${sub}</div></button>`;
+}
+function bodySectionHTML(){
+  const es = bodyEntries();
+  if(!es.length) return `<section class="card"><p style="margin:0">체중과 허리·엉덩이 둘레를 2주에 한 번 남겨 두면 여기서 그래프로 변화를 볼 수 있어요.</p><button class="btn primary block" data-act="bodyAdd" style="margin-top:12px">첫 기록 남기기</button></section>`;
+  const have = BODY.filter(m=>es.some(e=>e[m.k]!=null));
+  if(!bodyKey || !have.some(m=>m.k===bodyKey)) bodyKey = have[0].k;
+  const m = bm(bodyKey), pts = es.filter(e=>e[m.k]!=null).map(e=>({date:e.date, v:e[m.k]}));
+  const last = pts[pts.length-1], first = pts[0];
+  let note = pts.length>1 ? `처음(${fmtShort(first.date)})보다 ${signed(last.v-first.v)}${m.u}` : '첫 기록';
+  if(m.k==='w'){
+    const recent = pts.filter(p=>(parseDay(dayKey()) - parseDay(p.date)) / 864e5 < 7);
+    if(recent.length >= 2) note += ` · 최근 7일 평균 ${num1(recent.reduce((a,p)=>a+p.v,0)/recent.length)}kg`;
+  }
+  return `<div class="filters">${have.map(x=>`<button data-act="bodyKey" data-k="${x.k}" class="${x.k===bodyKey?'on':''}">${x.n}</button>`).join('')}</div>
+    <section class="card chart">
+      <div class="bodyhead"><b class="bignum">${num1(last.v)}<span>${m.u}</span></b><span class="sub">${note}</span></div>
+      ${pts.length>1 ? lineChart(pts) : '<p class="sub" style="margin:8px 0 0">두 번째 기록부터 그래프가 그려져요.</p>'}
+      <table class="recent body"><tbody>${es.slice(-6).reverse().map(e=>`<tr data-act="bodyEdit" data-date="${e.date}"><td>${fmtShort(e.date)} (${WD[parseDay(e.date).getDay()]})</td><td>${bodyLine(e)}</td></tr>`).join('')}</tbody></table>
+      <p class="sub" style="margin:8px 0 0">날짜를 누르면 고치거나 지울 수 있어요.</p>
+    </section>`;
+}
+function bodySheet(date){
+  const k = date || dayKey(), e = (S.body||[]).find(x=>x.date===k) || {};
+  openSheet(`<h3>몸 기록</h3><p class="sub">잰 항목만 적으면 돼요. 같은 날짜는 덮어써요.</p>
+    <label class="fld datef"><input type="date" id="bd-date" value="${k}" max="${dayKey()}" aria-label="날짜"></label>
+    <div class="bform">${BODY.map(x=>`<div class="brow"><div><b>${x.n}</b><small>${x.how}</small></div><label class="fld"><input id="bd-${x.k}" inputmode="decimal" value="${e[x.k]??''}" placeholder="0" aria-label="${x.n} (${x.u})"><span>${x.u}</span></label></div>`).join('')}</div>
+    <div class="actions">${e.date?`<button class="btn ghost" style="color:var(--danger)" data-act="bodyDelAsk" data-date="${k}">삭제</button>`:`<button class="btn ghost" data-act="close">취소</button>`}<button class="btn primary" data-act="bodySave">저장</button></div>`);
+}
+function bodySave(){
+  const date = $('#bd-date').value || dayKey();
+  const e = {date}; let n = 0;
+  for(const m of BODY){
+    const raw = $('#bd-'+m.k).value.replace(',', '.').trim();
+    if(!raw) continue;
+    const v = Number(raw);
+    if(!isFinite(v) || v < m.lo || v > m.hi){ toast(m.n+' 값을 확인해 주세요'); return; }
+    e[m.k] = Math.round(v*10)/10; n++;
+  }
+  if(!n){ toast('값을 하나 이상 적어 주세요'); return; }
+  S.body = (S.body||[]).filter(x=>x.date!==date).concat(e);
+  save(); closeSheet(); render(); toast(fmtDate(date)+' 기록을 저장했어요');
 }
 
 function barChart(weeks){
@@ -1049,7 +1140,7 @@ function curriculumSheet(){
 }
 function settingsSheet(){
   const n = S.sessions.length;
-  openSheet(`<h3>설정·백업</h3><p class="sub">운동 기록 ${n}개가 이 휴대폰에만 저장되어 있어요.</p>
+  openSheet(`<h3>설정·백업</h3><p class="sub">운동 기록 ${n}개와 몸 기록 ${(S.body||[]).length}개가 이 휴대폰에만 저장되어 있어요.</p>
     <div class="setting"><div>휴식 끝 알림음<small>세트 사이 휴식이 끝나면 짧게 울려요. 무음 모드에서는 소리가 나지 않아요.</small></div><button class="switch${S.sound?' on':''}" data-act="sound" role="switch" aria-checked="${S.sound}" aria-label="휴식 끝 알림음"></button></div>
     <div class="stack" style="margin-top:16px">
       <button class="btn primary block" data-act="backupSave">백업 파일 저장</button>
@@ -1080,6 +1171,10 @@ function mergeData(src){
   src.sessions.forEach(s=>{ if(s && s.id && Array.isArray(s.items) && !have.has(s.id)){ S.sessions.push(s); have.add(s.id); added++; } });
   S.sessions.sort((a,b)=>a.start-b.start);
   if(src.weekGoal) S.weekGoal = src.weekGoal;
+  if(Array.isArray(src.body)){
+    const days = new Set((S.body||[]).map(e=>e.date));
+    S.body = (S.body||[]).concat(src.body.filter(e=>e && e.date && !days.has(e.date)));
+  }
   return added;
 }
 $('#importFile').addEventListener('change', e=>{
@@ -1329,6 +1424,8 @@ document.addEventListener('input', e=>{
   save();
 });
 document.addEventListener('focusin', e=>{ if(e.target.matches('.fld input')) document.body.classList.add('typing'); });
+// 몸 기록 날짜를 바꾸면 그날 값으로 다시 채움
+document.addEventListener('change', e=>{ if(e.target.id==='bd-date' && e.target.value) bodySheet(e.target.value); });
 document.addEventListener('focusout', e=>{ if(e.target.matches('.fld input')) document.body.classList.remove('typing'); });
 document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible' && !$('#session').hidden){ requestWake(); sessionTick(); } });
 document.addEventListener('click', e=>{
@@ -1353,6 +1450,13 @@ document.addEventListener('click', e=>{
     case 'hideInstall': S.hideInstall = true; save(); render(); break;
     case 'settings': settingsSheet(); break;
     case 'curriculum': curriculumSheet(); break;
+    case 'bodyAdd': bodySheet(); break;
+    case 'bodyEdit': bodySheet(b.dataset.date); break;
+    case 'bodySave': bodySave(); break;
+    case 'bodyKey': bodyKey = b.dataset.k; render(); break;
+    case 'bodyDelAsk':
+      openSheet(`<h3>${fmtDate(b.dataset.date)} 몸 기록을 삭제할까요?</h3><p class="sub">삭제하면 되돌릴 수 없어요.</p><div class="actions"><button class="btn ghost" data-act="bodyEdit" data-date="${b.dataset.date}">취소</button><button class="btn danger" data-act="bodyDelYes" data-date="${b.dataset.date}">삭제</button></div>`); break;
+    case 'bodyDelYes': S.body = (S.body||[]).filter(x=>x.date!==b.dataset.date); save(); closeSheet(); render(); toast('몸 기록을 삭제했어요'); break;
     case 'restartAsk':
       openSheet(`<h3>1주차부터 다시 시작할까요?</h3><p class="sub">이번 주가 1주차가 되고 1단계부터 다시 진행해요. 운동 기록은 그대로 남아요.</p><div class="actions"><button class="btn ghost" data-act="curriculum">취소</button><button class="btn primary" data-act="restartYes">다시 시작</button></div>`); break;
     case 'restartYes': S.programStart = dayKey(weekStart()); save(); closeSheet(); render(); toast('이번 주부터 1주차로 시작해요'); break;
