@@ -1087,7 +1087,7 @@ function lineChart(pts){
 
 /* ============ SHEETS ============ */
 function openSheet(html){ $('#sheet').innerHTML = '<div class="grab"></div>'+html; $('#scrim').hidden = false; $('#sheet').scrollTop = 0; }
-function closeSheet(){ $('#scrim').hidden = true; $('#sheet').innerHTML = ''; }
+function closeSheet(){ $('#scrim').hidden = true; $('#sheet').innerHTML = ''; setTimeout(reloadIfIdle, 300); }
 let toastT;
 function toast(msg){ const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(()=>t.hidden=true, 2600); }
 
@@ -1229,6 +1229,7 @@ function closeSession(){
   $('#session').hidden = true; document.body.style.overflow = '';
   clearInterval(tick);
   try{ wake && wake.release(); }catch(e){} wake = null;
+  setTimeout(reloadIfIdle, 300);
 }
 
 const PLAY = '<svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg>', STOP = '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg>';
@@ -1512,7 +1513,28 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !$('#scrim').hi
 if(!S.programStart){ S.programStart = dayKey(weekStart()); save(); }
 render();
 // 오프라인용 캐시 (GitHub Pages 같은 https 주소에서만)
-if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+// 새 버전 자동 적용: 앱으로 돌아올 때마다 업데이트를 확인하고, 새 버전이 들어오면 다시 불러옴
+// (아이폰은 홈 화면 앱을 다시 열어도 새로 불러오지 않고 이전 화면을 그대로 보여 주기 때문)
+let reloadWhenIdle = false;
+function reloadIfIdle(){
+  if(reloadWhenIdle && $('#session').hidden && $('#scrim').hidden){
+    try{ sessionStorage.setItem('inhee.updated','1'); }catch(e){}
+    location.reload();
+  }
+}
+if('serviceWorker' in navigator && location.protocol==='https:'){
+  navigator.serviceWorker.register('sw.js').then(reg=>{
+    const check = () => reg.update().catch(()=>{});
+    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') check(); });
+    setInterval(check, 30*60*1000);
+  }).catch(()=>{});
+  let hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', ()=>{
+    if(!hadController){ hadController = true; return; }   // 처음 설치될 때는 다시 불러올 필요 없음
+    reloadWhenIdle = true; reloadIfIdle();                  // 운동 중이거나 창이 열려 있으면 닫은 뒤에
+  });
+}
+try{ if(sessionStorage.getItem('inhee.updated')){ sessionStorage.removeItem('inhee.updated'); toast('새 버전으로 업데이트했어요'); } }catch(e){}
 </script>
 </body>
 </html>

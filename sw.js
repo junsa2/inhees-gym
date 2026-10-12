@@ -1,5 +1,5 @@
 // Offline cache for Inhee's Gym. Bump VERSION whenever any file changes.
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = 'inhee-' + VERSION;
 const FONTS = 'inhee-fonts';
 const ASSETS = [
@@ -155,11 +155,15 @@ self.addEventListener('activate', e => {
     .then(() => self.clients.claim()));
 });
 
-// The page itself: network first (so updates show up), cached copy when the gym has no signal
+// The page itself: network first (so updates show up), cached copy when the gym has no signal.
+// no-cache makes the browser ask GitHub every time instead of reusing its own 10-minute copy.
 async function page(req) {
   const cache = await caches.open(CACHE);
   try {
-    const res = await Promise.race([fetch(req), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 3500))]);
+    let res = await Promise.race([fetch(req.url, {cache: 'no-cache', credentials: 'same-origin'}),
+                                  new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 3500))]);
+    // a followed redirect can't answer a navigation, so hand back a plain copy
+    if (res.redirected) res = new Response(res.body, {status: res.status, statusText: res.statusText, headers: res.headers});
     if (res && res.ok) cache.put('index.html', res.clone());
     return res;
   } catch (err) {
