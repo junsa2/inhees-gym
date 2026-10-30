@@ -21,7 +21,7 @@
 :root{
   --bg:#F3F1F6; --surface:#FFFFFF; --surface-2:#F8F6FB; --ink:#1E1A2B; --muted:#625C74; --line:#E3DFEA;
   --accent:#5B3E9E; --accent-ink:#FFFFFF; --accent-soft:#ECE6F7;
-  --mon:#7A3B8C; --tue:#2F68A8; --wed:#1C7C6E; --fri:#B86E10; --sat:#C8463A; --car:#B23C70; --rest:#9A94A8; --plate-ink:#FFFFFF;
+  --mon:#7A3B8C; --tue:#2F68A8; --wed:#1C7C6E; --fri:#B86E10; --sat:#C8463A; --rest:#9A94A8; --plate-ink:#FFFFFF;
   --glute:var(--mon); --quad:var(--tue); --back:var(--wed); --core:var(--fri); --cardio:var(--sat); --recover:#5F7F6E;
   --glute-soft:#F2E7F5; --quad-soft:#E5EEF8; --back-soft:#E0F1EE; --core-soft:#F8EDDD; --cardio-soft:#F9E6E3; --recover-soft:#E6EFEA;
   --danger:#B3372F;
@@ -37,7 +37,7 @@
     color-scheme:dark;
     --bg:#121018; --surface:#1B1823; --surface-2:#221E2C; --ink:#ECE8F3; --muted:#A39CB4; --line:#2E2939;
     --accent:#B4A2F0; --accent-ink:#1A1230; --accent-soft:#2A2240;
-    --mon:#C28AD4; --tue:#7FAEE6; --wed:#5FC2B2; --fri:#E2A04A; --sat:#EC8A7C; --car:#EE8DB8; --rest:#6E6880; --plate-ink:#15121C;
+    --mon:#C28AD4; --tue:#7FAEE6; --wed:#5FC2B2; --fri:#E2A04A; --sat:#EC8A7C; --rest:#6E6880; --plate-ink:#15121C;
     --recover:#8DB59F;
     --glute-soft:#2E2236; --quad-soft:#1D2838; --back-soft:#17302C; --core-soft:#33281A; --cardio-soft:#3A2220; --recover-soft:#1E2B24;
     --danger:#EF7D74; --shadow:0 1px 2px rgba(0,0,0,.35);
@@ -47,7 +47,7 @@
   color-scheme:dark;
   --bg:#121018; --surface:#1B1823; --surface-2:#221E2C; --ink:#ECE8F3; --muted:#A39CB4; --line:#2E2939;
   --accent:#B4A2F0; --accent-ink:#1A1230; --accent-soft:#2A2240;
-  --mon:#C28AD4; --tue:#7FAEE6; --wed:#5FC2B2; --fri:#E2A04A; --sat:#EC8A7C; --car:#EE8DB8; --rest:#6E6880; --plate-ink:#15121C;
+  --mon:#C28AD4; --tue:#7FAEE6; --wed:#5FC2B2; --fri:#E2A04A; --sat:#EC8A7C; --rest:#6E6880; --plate-ink:#15121C;
   --recover:#8DB59F;
   --glute-soft:#2E2236; --quad-soft:#1D2838; --back-soft:#17302C; --core-soft:#33281A; --cardio-soft:#3A2220; --recover-soft:#1E2B24;
   --danger:#EF7D74; --shadow:0 1px 2px rgba(0,0,0,.35);
@@ -75,7 +75,7 @@ h2.sec{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--muted);ma
 .hero{padding:18px;box-shadow:var(--shadow)}
 .hero-top{display:flex;gap:14px;align-items:flex-start}
 .plate{flex:none;width:56px;height:56px;border-radius:12px;display:grid;place-items:center;font-family:var(--f-disp);font-size:30px;color:var(--plate-ink);background:var(--rest)}
-.plate.mon{background:var(--mon)} .plate.tue{background:var(--tue)} .plate.wed{background:var(--wed)} .plate.fri{background:var(--fri)} .plate.sat{background:var(--sat)} .plate.car{background:var(--car)}
+.plate.mon{background:var(--mon)} .plate.tue{background:var(--tue)} .plate.wed{background:var(--wed)} .plate.fri{background:var(--fri)} .plate.sat{background:var(--sat)}
 .plate.sm{width:36px;height:36px;font-size:19px;border-radius:9px}
 .eyebrow{font-size:12px;color:var(--muted);font-weight:500}
 .hero h3{margin:2px 0 2px;font-size:20px;line-height:1.3;text-wrap:balance}
@@ -121,7 +121,7 @@ h2.sec{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--muted);ma
 .wd .dot.miss{opacity:.45}
 .wd .dot.off{border:0;font-family:var(--f-body);font-size:11px}
 .wd .dot.done{border:0;color:var(--plate-ink)}
-.wd .dot.mon{background:var(--mon)} .wd .dot.tue{background:var(--tue)} .wd .dot.wed{background:var(--wed)} .wd .dot.fri{background:var(--fri)} .wd .dot.sat{background:var(--sat)} .wd .dot.car{background:var(--car)}
+.wd .dot.mon{background:var(--mon)} .wd .dot.tue{background:var(--tue)} .wd .dot.wed{background:var(--wed)} .wd .dot.fri{background:var(--fri)} .wd .dot.sat{background:var(--sat)}
 .wd.today{color:var(--ink);font-weight:700}
 .wd.today .dot:not(.done){border-color:var(--ink)}
 .weekfoot{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--muted)}
@@ -161,7 +161,7 @@ h2.sec{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--muted);ma
 .cal .h{font-size:11px;color:var(--muted);padding-bottom:4px}
 .cal .d{aspect-ratio:1;max-width:100%;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:var(--f-num);color:var(--muted)}
 .cal .d.has{color:var(--plate-ink);font-weight:500}
-.cal .d.mon{background:var(--mon)} .cal .d.tue{background:var(--tue)} .cal .d.wed{background:var(--wed)} .cal .d.fri{background:var(--fri)} .cal .d.sat{background:var(--sat)} .cal .d.car{background:var(--car)}
+.cal .d.mon{background:var(--mon)} .cal .d.tue{background:var(--tue)} .cal .d.wed{background:var(--wed)} .cal .d.fri{background:var(--fri)} .cal .d.sat{background:var(--sat)}
 .cal .d.today{outline:1.5px solid var(--ink);outline-offset:-1.5px}
 .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
 .legend span{display:inline-flex;align-items:center;gap:5px}
@@ -589,29 +589,6 @@ const EX = {
     how:['팔꿈치를 어깨 높이에서 90도로 굽혀 문틀이나 기둥에 댑니다.','같은 쪽 발을 한 걸음 앞으로 내밀며 가슴을 엽니다.','30초 유지하고 반대쪽.'],
     tip:['통증 없이 당기는 정도까지만.'],
     focus:'말린 어깨를 펴 주면 등과 목선이 곧아 보여요.'},
-
-  /* ---- 허리 부담 적은 복근 운동 (허리를 굽히지 않고 버티는 동작 위주) ---- */
-  toe_tap:{n:'누워서 토 탭',m:'매트',c:'core',mu:'아랫배',t:'r',s:3,r:[10,12],rest:30,side:true,
-    how:['누워서 무릎을 90도로 들어 정강이를 바닥과 평행하게 둡니다.','허리를 바닥에 붙인 채 한쪽 발끝을 천천히 내려 바닥을 톡 찍고 돌아옵니다.','좌우 번갈아 합니다.'],
-    tip:['허리가 바닥에서 뜨면 발을 조금 덜 내립니다.','숨을 내쉬면서 발을 내립니다.'],
-    focus:'다리를 통째로 들어 올리는 레그 레이즈보다 허리 부담이 훨씬 적은 아랫배 운동이에요.'},
-  mcgill_curlup:{n:'맥길 컬업',m:'매트',c:'core',mu:'복직근',t:'r',s:3,r:[6,6],rest:30,
-    how:['누워서 한쪽 무릎은 세우고 다른 다리는 폅니다.','두 손을 허리 아래에 넣어 허리의 자연스러운 곡선을 받칩니다.','턱을 살짝 당긴 채 머리와 어깨를 바닥에서 조금만 들어 8초 버티고 내려옵니다.','6회 하고, 다음 세트는 세운 다리를 바꿔서 합니다.'],
-    tip:['목이 아니라 배로 들어 올립니다. 아주 조금만 들어도 충분해요.'],
-    focus:'허리를 둥글게 말지 않는 크런치예요. 허리 재활 운동에서도 쓰는 방법입니다.'},
-  bear_hold:{n:'베어 홀드',m:'매트',c:'core',mu:'복부 전체, 어깨',t:'t',s:3,r:[20,30],rest:30,
-    how:['네발 기기 자세에서 손은 어깨 아래, 무릎은 골반 아래에 둡니다.','배에 힘을 주고 무릎을 바닥에서 2~3cm만 띄웁니다.','등을 평평하게 유지한 채 버팁니다.'],
-    tip:['숨을 참지 말고 짧게 계속 쉽니다.'],
-    focus:'플랭크보다 허리 부담이 적으면서 복부 전체를 단단하게 잡아 줘요.'},
-
-  /* ---- 유산소 루틴용 ---- */
-  elliptical:{n:'일립티컬 (크로스 트레이너)',m:'일립티컬 머신',c:'cardio',mu:'하체 전체, 팔',t:'c',s:1,r:[10,10],rest:0,set:'중간 저항 · 대화할 수 있는 속도',
-    how:['발판에 발 전체를 올리고 손잡이를 가볍게 잡습니다.','처음 2분은 천천히, 그다음은 중간 저항으로 일정하게 밟습니다.','발뒤꿈치로 밀어 내리면 엉덩이가 더 일합니다.'],
-    tip:['무릎과 발목에 충격이 적어 체중이 걱정될 때 좋은 유산소예요.']},
-  bike_interval:{n:'자전거 인터벌',m:'실내 자전거',c:'cardio',mu:'허벅지, 엉덩이, 심폐',t:'c',s:1,r:[10,10],rest:0,set:'빠르게 30초 + 보통 90초 반복',
-    intv:[[30,'빠르게'],[90,'보통']],
-    how:['보통 속도로 90초, 빠르게(또는 저항을 올려) 30초를 번갈아 합니다.','시작 버튼을 누르면 구간이 바뀔 때마다 알려 줍니다.'],
-    tip:['빠른 구간도 상체가 흔들리지 않을 만큼만 올립니다.']},
 };
 // 사진: Free Exercise DB · 근육도: wger (근육이 같은 동작의 그림을 함께 씀)
 const PIC = {
@@ -674,55 +651,36 @@ const PIC = {
   figure4:{k:null,f:false,ph:'늘어나는 부위',p:['엉덩이 깊은 근육'],s:[]},
   calf_st:{k:'Calf_Stretch_Hands_Against_Wall',f:false,ph:'늘어나는 부위',p:['종아리'],s:[]},
   pec_stretch:{k:'3d_pec_stretch',f:false,ph:'늘어나는 부위',p:['가슴'],s:['어깨 앞'],note:'뒤에서 본 3D 그림이에요. 팔꿈치를 어깨 높이로 문틀에 대고, 같은 쪽 발을 한 걸음 내디디며 가슴을 엽니다.'},
-  toe_tap:{k:'Dead_Bug',p:['복직근'],s:['복사근'],note:'사진은 데드버그예요. 시작 자세는 같고, 토 탭은 팔을 바닥에 둔 채 다리만 번갈아 내립니다.'},
-  mcgill_curlup:{k:null,f:false,p:['복직근'],s:[]},
-  bear_hold:{k:null,f:false,p:['복부 전체'],s:['어깨']},
-  elliptical:{k:'Elliptical_Trainer',f:false,ph:'쓰는 부위',p:['하체 전체'],s:['팔']},
-  bike_interval:{k:'Bicycling_Stationary',fig:'Leg_Press',ph:'쓰는 부위',p:['대퇴사두근'],s:['대둔근','햄스트링']},
 };
-// 요일별 루틴 (목·일은 완전 휴식). warm=운동 전 준비운동, main=근력, fin=라인 운동(2단계부터),
-// abs=허리 부담 적은 복근, cardio=유산소, cool=운동 후 스트레칭
+// 요일별 루틴 (목·일은 완전 휴식). warm=운동 전 준비운동, main=근력, fin=라인 운동(2단계부터), cardio=유산소, cool=운동 후 스트레칭
 const RT = {
-  mon:{d:'월',day:'월요일',n:'하체 뒤 & 등',sub:'둔근 볼륨 · 햄스트링 · 등 당기기',min:90,
+  mon:{d:'월',day:'월요일',n:'하체 뒤 & 등',sub:'둔근 볼륨 · 햄스트링 · 등 당기기',min:85,
     warm:['cat_cow','arm_circle','leg_swing','glute_bridge'],
-    main:['hip_thrust','rdl','lying_leg_curl','lat_pulldown','seated_row','back_ext'],fin:['glute_kickback'],
-    abs:['mcgill_curlup','side_plank'],cardio:['incline_walk'],
+    main:['hip_thrust','rdl','lying_leg_curl','lat_pulldown','seated_row','back_ext'],fin:['glute_kickback'],cardio:['incline_walk'],
     cool:['hamstring_st','figure4','hip_flexor_st','child_pose'],
     why:'엉덩이(대둔근)와 허벅지 뒤를 키우는 날입니다. 큰 근육을 먼저 쓰고, 등 운동으로 자세를 잡은 뒤 인클라인 걷기로 마무리합니다.'},
-  tue:{d:'화',day:'화요일',n:'하체 앞 & 전면 코어',sub:'앞허벅지 · 무릎 안정 · 아랫배 · 팔 라인',min:90,
+  tue:{d:'화',day:'화요일',n:'하체 앞 & 전면 코어',sub:'앞허벅지 · 무릎 안정 · 복부 · 팔 라인',min:85,
     warm:['leg_swing','hip_circle','worlds_greatest','bw_squat'],
-    main:['squat','leg_press','walking_lunge','leg_extension','chest_press'],fin:['tri_pushdown'],
-    abs:['toe_tap','plank'],cardio:['bike'],
+    main:['squat','leg_press','walking_lunge','leg_extension','chest_press','leg_raise','plank'],fin:['tri_pushdown'],cardio:['bike'],
     cool:['quad_st','hip_flexor_st','lying_twist','knee_hug'],
-    why:'앞허벅지(대퇴사두)를 집중하고 무릎 주변을 튼튼하게 만드는 날입니다. 아랫배는 허리에 부담이 적은 토 탭과 플랭크로 마무리합니다.'},
-  wed:{d:'수',day:'수요일',n:'힙 힌지 & 등 라인',sub:'햄스트링 · 힙업(엉덩이 옆) · 상부 등',min:90,
+    why:'앞허벅지(대퇴사두)를 집중하고 무릎 주변을 튼튼하게 만드는 날입니다. 하복부와 플랭크로 코어를 마무리합니다.'},
+  wed:{d:'수',day:'수요일',n:'힙 힌지 & 등 라인',sub:'햄스트링 · 힙업(엉덩이 옆) · 상부 등',min:85,
     warm:['cat_cow','inchworm','hip_circle','glute_bridge'],
-    main:['sldl','hip_abduction','bulgarian','one_arm_row','face_pull'],fin:['straight_pd'],
-    abs:['bird_dog','bear_hold'],cardio:['stairmill'],
+    main:['sldl','hip_abduction','bulgarian','one_arm_row','face_pull','bird_dog'],fin:['straight_pd'],cardio:['stairmill'],
     cool:['hamstring_st','lying_twist','pec_stretch','child_pose'],
     why:'엉덩이를 뒤로 접는 힙 힌지와 엉덩이 옆 근육으로 힙 라인을 만드는 날입니다. 등 운동으로 어깨가 말리지 않게 잡아 줍니다.'},
-  fri:{d:'금',day:'금요일',n:'하체 앞·안쪽 & 회전 코어',sub:'허벅지 안쪽 · 한쪽 다리 밸런스 · 허리 라인',min:85,
+  fri:{d:'금',day:'금요일',n:'하체 앞·안쪽 & 회전 코어',sub:'허벅지 안쪽 · 한쪽 다리 밸런스 · 허리 라인',min:80,
     warm:['leg_swing','worlds_greatest','torso_rotation','bw_squat'],
-    main:['sumo_squat','reverse_lunge','hip_adduction','db_shoulder_press'],fin:['woodchop'],
-    abs:['pallof_press','dead_bug'],cardio:['treadmill_interval'],
+    main:['sumo_squat','reverse_lunge','hip_adduction','db_shoulder_press','pallof_press','dead_bug'],fin:['woodchop'],cardio:['treadmill_interval'],
     cool:['butterfly_st','quad_st','figure4','knee_hug'],
     why:'허벅지 안쪽과 한쪽 다리 밸런스를 다지는 날입니다. 몸이 돌아가지 않게 버티는 코어로 골반을 안정시킵니다.'},
-  sat:{d:'토',day:'토요일',n:'하체 서킷 & 코어',sub:'쉬지 않고 도는 서킷 · 대사량 끌어올리기',min:60,
+  sat:{d:'토',day:'토요일',n:'하체 서킷 & 코어',sub:'쉬지 않고 도는 서킷 · 대사량 끌어올리기',min:55,
     circuit:{rounds:3,max:4,moveRest:30,roundRest:120},
     warm:['jumping_jack','leg_swing','inchworm','bw_squat'],
     main:['kb_swing','goblet_squat','step_up','mountain_climber','side_plank'],
-    abs:['toe_tap','bear_hold'],
     cool:['foam_roll','hip_flexor_st','calf_st','child_pose'],
     why:'하체 큰 근육을 쉬지 않고 돌려 심박수를 올리는 서킷입니다. 동작 사이 30초, 라운드 사이 2분 쉬고 3~4라운드 돕니다. 끝나면 폼롤러와 스트레칭으로 하체를 꼭 풀어 주세요.'},
-  car:{d:'유',day:'추가 루틴',n:'유산소 & 복근',sub:'관절 부담 적은 머신 3종 · 지방 태우기',min:55,extra:true,
-    warm:['leg_swing','hip_circle','glute_bridge'],
-    abs:['plank','bird_dog'],
-    cardio:['elliptical','bike_interval','incline_walk'],
-    mins:{elliptical:[10,12,15], bike_interval:[10,12,15], incline_walk:[10,15,15]},   // 1단계·2단계·3단계 이상
-    cool:['quad_st','hamstring_st','calf_st','child_pose'],
-    why:'근력 운동 없이 유산소에 집중하는 날이에요. 무릎·발목 충격이 적은 일립티컬로 시작해 자전거 인터벌로 심박수를 올리고, 인클라인 걷기로 마무리합니다. 주 5회 루틴에 더해 하루 더 움직이고 싶을 때 하세요. 단계가 올라가면 머신별 시간이 늘어나고, 일주일에 하루는 꼭 쉬세요.'},
-  rec:{d:'쉼',day:'쉬는 날',n:'회복 스트레칭',sub:'전신을 천천히 풀어 주는 15분',min:20,rest:true,absSets:1,
-    abs:['dead_bug','bird_dog'],
+  rec:{d:'쉼',day:'쉬는 날',n:'회복 스트레칭',sub:'전신을 천천히 풀어 주는 15분',min:15,rest:true,
     cool:['cat_cow','worlds_greatest','hip_flexor_st','hamstring_st','butterfly_st','lying_twist','figure4','pec_stretch','child_pose'],
     why:'목·일요일 같은 쉬는 날에 해요. 근육 회복을 돕고, 골반과 어깨를 바로 세워 몸 선이 정리되어 보이게 합니다. 하루 7,000~8,000보 걷기와 함께 하면 좋아요.'},
 };
@@ -743,11 +701,8 @@ const PHASES = {
 const CARDIO_ADJ = {1:-5, 2:0, 3:5, 4:5};
 function progWeek(d=new Date()){ return Math.max(1, Math.floor((weekStart(d) - parseDay(S.programStart)) / 6048e5) + 1); }
 function phaseNow(){ const w = progWeek(); return w<=4 ? 1 : w<=8 ? 2 : w<=12 ? 3 : 4; }
-function setsFor(ex, grp, ph){ return (grp==='main' || grp==='abs') && ph===1 && ex.t!=='c' ? Math.max(2, ex.s-1) : ex.s; }
+function setsFor(ex, grp, ph){ return grp==='main' && ph===1 && ex.t!=='c' ? Math.max(2, ex.s-1) : ex.s; }
 function cardioFor(ex, ph){ return Math.max(15, ex.r[0] + CARDIO_ADJ[ph]); }
-// 루틴에 단계별 시간이 따로 있으면 그것을, 없으면 기본 규칙(±5분)을 씀
-function cardioTarget(r, id, ph){ return r.mins && r.mins[id] ? r.mins[id][Math.min(ph,3)-1] : cardioFor(EX[id], ph); }
-function absSetsFor(r, id, ph){ return r.absSets || setsFor(EX[id], 'abs', ph); }
 function roundsFor(r, ph){ return ph>=3 ? r.circuit.max : r.circuit.rounds; }
 
 const TIPS = [
@@ -893,8 +848,7 @@ function viewHome(){
       ${line('운동 전', moreOf(r.warm)+' · 약 5분')}
       ${r.circuit ? line('서킷', `${roundsFor(r, ph)}라운드 · 동작 사이 ${r.circuit.moveRest}초 · 라운드 사이 ${r.circuit.roundRest/60}분`) : ''}
       ${(r.fin||[]).map(id=>line('라인', ph>=2 ? EX[id].n : EX[id].n+' · 5주차부터')).join('')}
-      ${r.abs ? line('복근', r.abs.map(id=>EX[id].n).join(' · ')) : ''}
-      ${(r.cardio||[]).map(id=>line('유산소', `${EX[id].n} ${cardioTarget(r, id, ph)}분${EX[id].set?' · '+EX[id].set:''}`)).join('')}
+      ${(r.cardio||[]).map(id=>line('유산소', `${EX[id].n} ${cardioFor(EX[id], ph)}분${EX[id].set?' · '+EX[id].set:''}`)).join('')}
       ${line('운동 후', moreOf(r.cool)+(r.cool[0]==='foam_roll'?' · 약 15분':' · 약 5분'))}
       <div class="actions">${done
         ? `<button class="btn ghost" data-act="start" data-rid="${rid}" style="flex:1">한 번 더 하기</button>`
@@ -906,8 +860,7 @@ function viewHome(){
     hero = `<section class="card hero">
       <div class="hero-top"><div class="plate">휴</div>
         <div style="flex:1;min-width:0"><div class="eyebrow">${WD[dow]}요일 · ${recDone?'회복 스트레칭 완료':'쉬는 날'}</div><h3>오늘은 쉬는 날</h3><div class="sub">근육이 자라고 관절이 회복되는 날이에요. 회복 스트레칭 15분과 가벼운 걷기를 추천해요.</div></div></div>
-      <div class="actions"><button class="btn ${recDone?'ghost':'primary'}" data-act="start" data-rid="rec">회복 스트레칭</button><button class="btn ghost" data-act="start" data-rid="car">유산소 루틴</button></div>
-      <button class="linkish" data-act="pickRoutine" style="margin-top:12px">다른 루틴 고르기</button>
+      <div class="actions"><button class="btn ${recDone?'ghost':'primary'}" data-act="start" data-rid="rec">회복 스트레칭 15분</button><button class="btn ghost" data-act="pickRoutine">그래도 운동</button></div>
     </section>`;
   }
   let week = '', cnt = 0, cmin = 0;
@@ -958,8 +911,6 @@ function viewRoutines(){
   ${progCardHTML()}
   <h2 class="sec">주 5회 계획</h2>
   <section class="card plan">${rows}</section>
-  <h2 class="sec">추가 루틴</h2>
-  <section class="card plan"><button data-act="routine" data-rid="car"><div class="plate sm car">${RT.car.d}</div><div class="nm"><b>${RT.car.n}</b><small class="sub">${RT.car.sub} · 약 ${RT.car.min}분</small></div><span class="linkish">보기</span></button></section>
   <h2 class="sec">운동 사전</h2>
   <div class="filters">${[['all','전체']].concat(Object.entries(CAT)).map(([k,l])=>`<button data-act="filter" data-f="${k}" class="${libFilter===k?'on':''}">${l}</button>`).join('')}</div>
   <div class="lib">${list}</div>`;
@@ -986,7 +937,7 @@ function viewHistory(){
   <section class="card">
     <div class="cal-head"><button data-act="cal" data-d="-1" aria-label="이전 달">‹</button><b>${y}년 ${m+1}월 <span class="sub">· ${monthCount}회</span></b><button data-act="cal" data-d="1" aria-label="다음 달">›</button></div>
     <div class="cal">${cells}</div>
-    <div class="legend">${ORDER.concat('car').map(id=>`<span><i style="background:var(--${id})"></i>${RT[id].d}</span>`).join('')}</div>
+    <div class="legend">${ORDER.map(id=>`<span><i style="background:var(--${id})"></i>${RT[id].d}</span>`).join('')}</div>
   </section>
   <h2 class="sec">운동 기록</h2>
   ${list ? `<div class="hist">${list}</div>` : `<div class="empty">아직 기록이 없어요.<br>오늘 탭에서 운동을 시작하면 세트마다 무게와 횟수가 저장됩니다.</div>`}`;
@@ -1165,18 +1116,16 @@ function routineSheet(rid){
   const r = RT[rid], ph = phaseNow();
   const presc = (id, grp) => { const ex = EX[id];
     if(r.circuit && grp==='main') return movePresc(ex);
-    if(ex.t==='c') return (grp==='cardio' ? cardioTarget(r, id, ph) : range(ex))+'분';
+    if(ex.t==='c') return (grp==='cardio' ? cardioFor(ex, ph) : range(ex))+'분';
     if(grp==='warm' || grp==='cool') return movePresc(ex);
-    const n = grp==='abs' ? absSetsFor(r, id, ph) : setsFor(ex, grp, ph);
-    return n+'세트 × '+(ex.side?'좌우 ':'')+range(ex)+unitOf(ex); };
+    return setsFor(ex, grp, ph)+'세트 × '+(ex.side?'좌우 ':'')+range(ex)+unitOf(ex); };
   const li = (ids, grp) => ids.map(id=>`<button data-act="exinfo" data-ex="${id}"><span class="cdot ${EX[id].c}"></span>${EX[id].n}<small>${presc(id, grp)}</small></button>`).join('');
   openSheet(`<div class="row"><div class="plate sm ${r.rest?'':rid}">${r.rest?'휴':r.d}</div><div><h3>${r.n}</h3><div class="sub">${r.day} · 약 ${r.min}분</div></div></div>
     <p style="margin:12px 0 0;max-width:65ch">${r.why}</p>
     ${r.warm?`<h4>운동 전 · 준비운동</h4><div class="pick">${li(r.warm,'warm')}</div>`:''}
     ${r.main?`<h4>${r.circuit?'서킷 · '+roundsFor(r, ph)+'라운드':'근력 운동 · '+ph+'단계 기준'}</h4><div class="pick">${li(r.main,'main')}</div>`:''}
     ${r.fin?`<h4>라인 운동${ph<2?' · 5주차(2단계)부터':''}</h4><div class="pick">${li(r.fin,'fin')}</div>`:''}
-    ${r.abs?`<h4>복근 · 허리 부담 적은 동작</h4><div class="pick">${li(r.abs,'abs')}</div>`:''}
-    ${r.cardio?`<h4>유산소${r.mins?' · '+ph+'단계 기준':''}</h4><div class="pick">${li(r.cardio,'cardio')}</div>`:''}
+    ${r.cardio?`<h4>유산소</h4><div class="pick">${li(r.cardio,'cardio')}</div>`:''}
     ${r.cool?`<h4>${r.rest?'스트레칭 순서':'운동 후 · 스트레칭'}</h4><div class="pick">${li(r.cool,'cool')}</div>`:''}
     <div class="actions"><button class="btn ghost" data-act="close">닫기</button><button class="btn primary" data-act="start" data-rid="${rid}">시작</button></div>`);
 }
@@ -1262,8 +1211,7 @@ function startSession(rid){
     (r.warm||[]).map(id=>newItem(id,'warm')),
     (r.main||[]).map(id=>newItem(id,'main', circuit ? circuit.rounds : setsFor(EX[id],'main',ph))),
     ph>=2 ? (r.fin||[]).map(id=>newItem(id,'fin')) : [],
-    (r.abs||[]).map(id=>newItem(id,'abs', absSetsFor(r, id, ph))),
-    (r.cardio||[]).map(id=>newItem(id,'cardio', 1, cardioTarget(r, id, ph))),
+    (r.cardio||[]).map(id=>newItem(id,'cardio', 1, cardioFor(EX[id], ph))),
     (r.cool||[]).map(id=>newItem(id,'cool')));
   S.draft = {id:'s_'+Date.now().toString(36), rid, name:r.n, date:dayKey(), start:Date.now(), phase:ph, circuit, rest:null, sw:null, items};
   save(); openSession();
@@ -1354,7 +1302,7 @@ function renderSession(){
     <div class="s-body"><div class="in">
       ${listHTML('warm','운동 전 준비운동','움직이며 몸 데우기 · 약 5분')}
       ${d.circuit ? circuitHTML(d) : group('main','근력 운동')}
-      ${group('fin','라인 운동')}${group('abs','복근 · 허리 부담 적은 동작')}${group('extra','추가 운동')}${group('cardio','유산소')}${group('post','마무리')}
+      ${group('fin','라인 운동')}${group('extra','추가 운동')}${group('cardio','유산소')}${group('post','마무리')}
       ${listHTML('cool', d.rid==='rec' ? '회복 스트레칭' : '운동 후 스트레칭', d.rid==='rec' ? '천천히 숨 쉬며 늘리기' : '멈춰서 30초씩 늘리기')}
       <button class="btn ghost block" data-act="addEx">+ 운동 추가</button>
       <button class="btn ghost block" data-act="discard" style="color:var(--danger)">이 운동 기록 버리기</button>
@@ -1494,7 +1442,7 @@ document.addEventListener('click', e=>{
     case 'discardThen': S.draft = null; save(); startSession(b.dataset.rid); break;
     case 'close': closeSheet(); break;
     case 'pickRoutine':
-      openSheet(`<h3>루틴 고르기</h3><p class="sub">빠진 요일이 있으면 오늘 대신 해도 돼요.</p><div class="pick">${ORDER.concat('car').map(id=>`<button data-act="start" data-rid="${id}"><div class="plate sm ${id}">${RT[id].d}</div>${RT[id].n}<small>약 ${RT[id].min}분</small></button>`).join('')}</div><div class="actions"><button class="btn ghost" data-act="close">닫기</button></div>`); break;
+      openSheet(`<h3>요일 루틴 고르기</h3><p class="sub">빠진 요일이 있으면 오늘 대신 해도 돼요.</p><div class="pick">${ORDER.map(id=>`<button data-act="start" data-rid="${id}"><div class="plate sm ${id}">${RT[id].d}</div>${RT[id].n}<small>약 ${RT[id].min}분</small></button>`).join('')}</div><div class="actions"><button class="btn ghost" data-act="close">닫기</button></div>`); break;
     case 'routine': routineSheet(b.dataset.rid); break;
     case 'exinfo': exSheet(b.dataset.ex); break;
     case 'filter': libFilter = b.dataset.f; render(); break;
@@ -1549,7 +1497,7 @@ document.addEventListener('click', e=>{
       const groups = Object.keys(CAT).map(c=>`<h4>${CAT[c]}</h4><div class="pick">${Object.entries(EX).filter(([id,e])=>e.c===c && !have.has(id)).map(([id,e])=>`<button data-act="addExYes" data-ex="${id}"><span class="cdot ${c}"></span>${e.n}<small>${e.m}</small></button>`).join('')||'<span class="sub">모두 추가됨</span>'}</div>`).join('');
       openSheet(`<h3>운동 추가</h3>${groups}<div class="actions"><button class="btn ghost" data-act="close">닫기</button></div>`); break; }
     case 'addExYes': { const id = b.dataset.ex, ex = EX[id];
-      const grp = ex.c==='cardio' ? 'cardio' : ex.c==='warmup' ? 'warm' : ex.c==='stretch' ? 'cool' : ex.c==='core' ? 'abs' : 'extra';
+      const grp = ex.c==='cardio' ? 'cardio' : ex.c==='warmup' ? 'warm' : ex.c==='stretch' ? 'cool' : 'extra';
       d.items.push(newItem(id, grp, 0, grp==='cardio' ? cardioFor(ex, phaseNow()) : 0)); save(); closeSheet(); renderSession(); break; }
     case 'restAdj': if(d && d.rest){ const dlt = Number(b.dataset.d)*1000; d.rest.end += dlt; d.rest.total = Math.max(d.rest.total + dlt, 1000); d.rest.fin = false; save(); sessionTick(); } break;
     case 'restSkip': if(d){ d.rest = null; save(); sessionTick(); } break;

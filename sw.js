@@ -1,5 +1,5 @@
 // Offline cache for Inhee's Gym. Bump VERSION whenever any file changes.
-const VERSION = 'v5';
+const VERSION = 'v6';
 const CACHE = 'inhee-' + VERSION;
 const FONTS = 'inhee-fonts';
 const ASSETS = [
@@ -36,8 +36,6 @@ const ASSETS = [
   "img/Dumbbell_Rear_Lunge_1.jpg",
   "img/Dumbbell_Step_Ups_0.jpg",
   "img/Dumbbell_Step_Ups_1.jpg",
-  "img/Elliptical_Trainer_0.jpg",
-  "img/Elliptical_Trainer_1.jpg",
   "img/Face_Pull_0.jpg",
   "img/Face_Pull_1.jpg",
   "img/Front_Leg_Raises_0.jpg",
